@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+html, body {
+  height: 100%; /* Ensure full height */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  font-family: 'Arial', sans-serif;
+}
+
+#root {
+  height: 100%; /* Ensure root element takes up the full screen */
+}
