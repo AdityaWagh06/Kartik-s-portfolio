@@ -1,4 +1,4 @@
-// pages/Categories.jsx
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GradientBackground from '../components/GradientBackground';
@@ -9,7 +9,7 @@ function Categories() {
     { name: 'Simple Edits', image: '/src/assets/cover 1.jpg', route: 'Simple' },
     { name: 'Gym Edits', image: '/src/assets/cover 1.jpg', route: 'Gym' },
     { name: 'Advanced Edits', image: '/src/assets/cover 1.jpg', route: 'Advanced' },
-    { name: 'Creative Edits', image: '/src/assets/cover 1.jpg', route: 'Creative' }, // Additional category
+    { name: 'Creative Edits', image: '/src/assets/cover 1.jpg', route: 'Creative' }, 
   ];
 
   const navigate = useNavigate();

@@ -9,7 +9,7 @@ function CategoryCard({ category, headline, services, videoLinks }) {
       <div className="flex flex-col md:flex-row justify-between items-start gap-10 md:gap-28 w-full max-w-6xl">
         {/* Phones Section */}
         <div
-          className="flex gap-10" // Removed overflow-x-auto
+          className="flex gap-10" 
           style={{
             flexShrink: 0,
             justifyContent: "flex-start",
