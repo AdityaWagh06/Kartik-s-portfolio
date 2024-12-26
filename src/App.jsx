@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home'; // Ensure this path matches your folder structure
+import Home from './pages/Home'; 
 import Categories from './pages/Categories';
 import CategoryDetails from './pages/CategoryDetails';
 
