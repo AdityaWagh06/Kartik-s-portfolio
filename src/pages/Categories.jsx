@@ -7,9 +7,9 @@ function Categories() {
   const [loading, setLoading] = useState(true);
   const categories = [
     { name: 'Simple Edits', image: '/src/assets/cover 1.jpg', route: 'Simple' },
-    { name: 'Gym Edits', image: '/src/assets/cover 1.jpg', route: 'Gym' },
-    { name: 'Advanced Edits', image: '/src/assets/cover 1.jpg', route: 'Advanced' },
-    { name: 'Creative Edits', image: '/src/assets/cover 1.jpg', route: 'Creative' }, 
+    { name: 'VFX Edits', image: '/src/assets/cover 1.jpg', route: 'VFX' },
+    { name: 'Transitional Edits', image: '/src/assets/cover 1.jpg', route: 'Transitional' },
+    { name: 'Commercial Edits', image: '/src/assets/cover 1.jpg', route: 'Commercial' }, 
   ];
 
   const navigate = useNavigate();

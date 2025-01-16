@@ -17,12 +17,12 @@ function CategoryDetails() {
         "Lightweight export options",
       ],
       videoLinks: [
-        "https://www.youtube.com/embed/simple1",
-        "https://www.youtube.com/embed/simple2",
-        "https://www.youtube.com/embed/simple3",
+        "/videos/Simple/D-mart shoot 1.mp4",
+        "/videos/Simple/Low energy DO THIS1.mp4",
+        "/videos/Simple/mpsc upsc difference.mp4",
       ],
     },
-    "Gym": {
+    "VFX": {
       headline: "Gym Edits",
       services: [
         "Dynamic workout video edits",
@@ -32,13 +32,13 @@ function CategoryDetails() {
         "Progress tracking visuals",
       ],
       videoLinks: [
-        "https://www.youtube.com/embed/gym1",
-        "https://www.youtube.com/embed/gym2",
-        "https://www.youtube.com/embed/gym3",
+        "/videos/VFX/Bottle.mp4",
+        "/videos/VFX/MAINNN.mp4",
+        "/videos/VFX/rasungun main2.mp4",
       ],
     },
-    "Advanced": {
-      headline: "Advance Edits",
+    "Transitional": {
+      headline: "Transitional Edits",
       services: [
         "Professional-grade tools",
         "Keyframe animation",
@@ -47,12 +47,12 @@ function CategoryDetails() {
         "Advanced transitions and effects",
       ],
       videoLinks: [
-        "https://www.youtube.com/embed/advanced1",
-        "https://www.youtube.com/embed/advanced2",
-        "https://www.youtube.com/embed/advanced3",
+        "/videos/Transitional/1.mp4",
+        "/videos/Transitional/Groww 2.mp4",
+        "/videos/Transitional/groww.mp4",
       ],
     },
-    "Creative": {
+    "Commercial": {
       headline: "Creative Edits",
       services: [
         "Custom animation tools",
@@ -62,9 +62,9 @@ function CategoryDetails() {
         "Artistic editing templates",
       ],
       videoLinks: [
-        "https://www.youtube.com/embed/creative1",
-        "https://www.youtube.com/embed/creative2",
-        "https://www.youtube.com/embed/creative3",
+        "/videos/Commercial/1022 (1).mp4",
+        "/videos/Commercial/Egg reel.mp4",
+        "/videos/Commercial/new ad.mp4",
       ],
     },
   };
