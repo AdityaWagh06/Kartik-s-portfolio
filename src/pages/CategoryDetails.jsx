@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import GradientBackground from "../components/GradientBackground";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 import CategoryCard from "../components/CategoryCard";
 
 function CategoryDetails() {
   const { category } = useParams();
-
 
   const pageContent = {
     "Simple": {
@@ -16,11 +16,12 @@ function CategoryDetails() {
         "Pre-designed templates",
         "Lightweight export options",
       ],
-      videoLinks: [
-        "/videos/Simple/D-mart shoot 1.mp4",
-        "/videos/Simple/Low energy DO THIS1.mp4",
-        "/videos/Simple/mpsc upsc difference.mp4",
-      ],
+      videoLinks:[
+        "https://www.youtube.com/embed/gFDJljyXkmo",
+        "https://www.youtube.com/embed/KGLL-il6WWA",
+        "https://www.youtube.com/embed/kXU_H-Iwyro"
+      ]
+      ,
     },
     "VFX": {
       headline: "Gym Edits",
@@ -32,9 +33,9 @@ function CategoryDetails() {
         "Progress tracking visuals",
       ],
       videoLinks: [
-        "/videos/VFX/Bottle.mp4",
-        "/videos/VFX/MAINNN.mp4",
-        "/videos/VFX/rasungun main2.mp4",
+        "https://www.youtube.com/embed/2Vv-BfVoq4g",
+        "https://www.youtube.com/embed/eY52Zsg-KVI",
+        "https://www.youtube.com/embed/ScMzIvxBSi4",
       ],
     },
     "Transitional": {
@@ -47,9 +48,9 @@ function CategoryDetails() {
         "Advanced transitions and effects",
       ],
       videoLinks: [
-        "/videos/Transitional/1.mp4",
-        "/videos/Transitional/Groww 2.mp4",
-        "/videos/Transitional/groww.mp4",
+        "https://www.youtube.com/embed/kXYiU_JCYtU",
+        "https://www.youtube.com/embed/LsoLEjrDogU",
+        "https://www.youtube.com/embed/9bZkp7q19f0",
       ],
     },
     "Commercial": {
@@ -62,24 +63,43 @@ function CategoryDetails() {
         "Artistic editing templates",
       ],
       videoLinks: [
-        "/videos/Commercial/1022 (1).mp4",
-        "/videos/Commercial/Egg reel.mp4",
-        "/videos/Commercial/new ad.mp4",
+        "https://www.youtube.com/embed/IcrbM1l_BoI",
+        "https://www.youtube.com/embed/fRh_vgS2dFE",
+        "https://www.youtube.com/embed/tgbNymZ7vqY",
       ],
     },
   };
 
-  const currentContent = pageContent[category] || pageContent["Simple"]; // Default to Simple if category not found
+  const currentContent = pageContent[category] || pageContent["Simple"];
 
   return (
-    <GradientBackground>
-      <CategoryCard
-        headline={currentContent.headline}
-        services={currentContent.services}
-        videoLinks={currentContent.videoLinks}
-        category={category}
-      />
-    </GradientBackground>
+    <div className="relative min-h-screen bg-black">
+      <Navbar />
+
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+        style={{
+          backgroundImage: "url('assets/money.webp')",
+        }}
+      ></div>
+
+      {/* Main Content */}
+      <div className="relative z-10 pt-20 pb-12 min-h-screen text-white">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <CategoryCard
+            headline={currentContent.headline}
+            services={currentContent.services}
+            videoLinks={currentContent.videoLinks}
+            category={category}
+          />
+        </motion.div>
+      </div>
+    </div>
   );
 }
 
