@@ -19,9 +19,9 @@ function CategoryCard({ category, headline, services, videoLinks }) {
         <h1 className="text-3xl font-bold text-red-500">{headline}</h1>
       </div>
 
-      {/* Mobile View */}
-      <div className="block md:hidden w-full">
-        {/* Phones Section - One at a time with scroll */}
+      {/* Mobile View with scroll fix */}
+      <div className="block md:hidden w-full h-[calc(100vh-5rem)] overflow-y-auto pb-10">
+        {/* Phones Section */}
         <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hidden">
           <div className="flex gap-6 w-max py-4 px-4">
             {videoLinks.map((videoLink, index) => (
@@ -42,7 +42,7 @@ function CategoryCard({ category, headline, services, videoLinks }) {
               </motion.div>
             ))}
           </div>
-          {/* Scroll Sign */}
+          {/* Scroll Hint */}
           {currentIndex < videoLinks.length - 1 && (
             <div className="absolute bottom-4 right-4 text-sm text-gray-400 animate-pulse">
               Swipe →
@@ -50,7 +50,7 @@ function CategoryCard({ category, headline, services, videoLinks }) {
           )}
         </div>
 
-        {/* Services - Below Phone */}
+        {/* Services */}
         <div className="w-full text-left space-y-6 mt-8 px-4">
           <h2 className="text-3xl font-bold text-red-500 border-b border-red-600 pb-2">
             Services Included
@@ -66,9 +66,8 @@ function CategoryCard({ category, headline, services, videoLinks }) {
         </div>
       </div>
 
-      {/* Desktop View - Original Layout */}
+      {/* Desktop View */}
       <div className="hidden md:flex flex-col md:flex-row justify-between items-start gap-10 md:gap-28 w-full max-w-6xl">
-        {/* Phones Section - All side by side */}
         <div className="w-full md:w-auto">
           <div className="flex gap-10">
             {videoLinks.map((videoLink, index) => (
@@ -77,7 +76,6 @@ function CategoryCard({ category, headline, services, videoLinks }) {
           </div>
         </div>
 
-        {/* Services - Right Side */}
         <div className="flex-1 text-left space-y-6 mt-8 md:mt-0">
           <h2 className="text-3xl font-bold text-red-500 border-b border-red-600 pb-2">
             Services Included

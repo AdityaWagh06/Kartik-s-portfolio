@@ -35,7 +35,7 @@ function Categories() {
       ></div>
 
       {/* Scrollable Content Container */}
-      <div className="relative z-10 pt-24 pb-12 h-[calc(100vh-6rem)] overflow-y-auto">
+      <div className="relative z-10 pt-20 pb-12 h-[calc(100vh-6rem)] overflow-y-auto">
         <motion.div
           className="text-center w-full max-w-7xl mx-auto px-4 min-h-full"
           initial={{ opacity: 0 }}

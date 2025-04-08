@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
+import { FaInstagram, FaYoutube, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 function About() {
   return (
@@ -8,39 +9,54 @@ function About() {
       {/* Navbar */}
       <Navbar />
 
-      {/* No Background Image - Solid Black Background */}
-      {/* Removed the background image div entirely */}
-
       {/* Main Content */}
-      <div className="relative z-10 pt-42 pb-20 flex flex-col items-center justify-center h-screen text-white text-center">
+      <div className="relative z-10 pt-24 pb-12 flex flex-col items-center justify-center px-6 text-white text-center">
         <motion.h1
-          className="text-6xl md:text-8xl font-extrabold text-red-600 mb-6"
-          initial={{ opacity: 0, y: -50 }}
+          className="text-4xl md:text-6xl font-extrabold text-red-600 mb-4"
+          initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         >
           About Me
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl mb-6 text-gray-300 px-4"
+          className="text-base md:text-lg text-gray-300 mb-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
         >
-          🎬 What I Do
+          🎬 Video Editor | Storyteller | Content Builder
         </motion.p>
 
-        {/* Description */}
-        <motion.div
-          className="text-lg text-gray-200 max-w-2xl"
+        <motion.p
+          className="text-sm md:text-base text-gray-200 max-w-xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
         >
-          <p>
-            I’m a video editor who helps creators, brands, and businesses bring their stories to life through powerful visuals. I specialize in short-form content like Instagram Reels and YouTube Shorts, focusing on clean cuts, impactful hooks, engaging text, and smooth transitions. I also work on YouTube vlogs, podcasts, and long-form videos, making sure they are well-paced, visually appealing, and ready to capture attention. Apart from content editing, I create motion graphics like logo animations, YouTube intros, and banners to give your brand a polished and professional look. My experience includes editing gym content, motivational reels, and promotional videos for companies. I don’t just edit videos, I help plan and build content that connects, performs, and leaves an impression. Whether you are an individual creator or a business, I make sure your videos stand out with clarity, style, and purpose.
-          </p>
+          I help creators and brands stand out with short-form content, YouTube edits, motion graphics, and cinematic reels. Clean cuts, smooth transitions, and engaging visuals are my signature. Let's make your content pop!
+        </motion.p>
+
+        {/* Social Media Icons */}
+        <motion.div
+          className="flex gap-6 mt-8 text-2xl text-gray-300"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.8 }}
+        >
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <FaInstagram className="hover:text-pink-500 transition" />
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+            <FaYoutube className="hover:text-red-500 transition" />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <FaTwitter className="hover:text-blue-400 transition" />
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin className="hover:text-blue-600 transition" />
+          </a>
         </motion.div>
       </div>
     </div>
