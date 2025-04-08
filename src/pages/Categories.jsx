@@ -9,10 +9,10 @@ function Categories() {
   );
 
   const categories = [
-    { name: 'Simple Edits', image: '/assets/cap.jpg', route: 'Simple' },
-    { name: 'VFX Edits', image: '/assets/cover1.jpg', route: 'VFX' },
-    { name: 'Transitional Edits', image: '/assets/cover1.jpg', route: 'Transitional' },
-    { name: 'Commercial Edits', image: '/assets/cover1.jpg', route: 'Commercial' },
+    { name: 'Standard', image: '/assets/cap.jpg', route: 'Standard' },
+    { name: 'Premium', image: '/assets/cover1.jpg', route: 'Premium' },
+    { name: 'Elite', image: '/assets/cover1.jpg', route: 'Elite' },
+    { name: 'Long Videos', image: '/assets/cover1.jpg', route: 'Long videos' },
   ];
 
   const navigate = useNavigate();
@@ -22,11 +22,11 @@ function Categories() {
   };
 
   return (
-    <div className="relative h-screen overflow-y-auto bg-black">
-      {/* Navbar */}
+    <div className="relative min-h-screen bg-black overflow-hidden">
+      {/* Fixed Navbar */}
       <Navbar />
 
-      {/* Background Image */}
+      {/* Fixed Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-50 z-0"
         style={{
@@ -34,16 +34,16 @@ function Categories() {
         }}
       ></div>
 
-      {/* Main Content */}
-      <div className="relative z-10 pt-24 pb-20">
+      {/* Scrollable Content Container */}
+      <div className="relative z-10 pt-24 pb-12 h-[calc(100vh-6rem)] overflow-y-auto">
         <motion.div
-          className="text-center w-full max-w-7xl mx-auto px-4"
+          className="text-center w-full max-w-7xl mx-auto px-4 min-h-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-8 md:mb-12 text-red-600"
+            className="text-3xl md:text-6xl font-bold mb-8 -mt-5 md:mb-12 text-red-600"
             initial={{ y: -50 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
@@ -65,8 +65,7 @@ function Categories() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                {/* Mobile: h-40, Tablet: h-56, Desktop: h-64 */}
-                <div className="w-full h-40 sm:h-56 lg:h-64 relative">
+                <div className="w-full h-40 sm:h-56 lg:h-60 relative">
                   {loading[index] && (
                     <div className="w-full h-full flex items-center justify-center bg-black bg-opacity-70">
                       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>

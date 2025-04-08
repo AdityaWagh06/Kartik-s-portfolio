@@ -14,3 +14,10 @@ html, body {
 #root {
   height: 100%; /* Ensure root element takes up the full screen */
 }
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

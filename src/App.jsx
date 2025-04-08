@@ -4,11 +4,13 @@ import Categories from './pages/Categories';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import CategoryDetails from './pages/CategoryDetails';
+import About from './pages/About'; // Import the About page
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} /> {/* Add About route */}
       <Route path="/categories" element={<Categories />} />
       <Route path="/categories/:category" element={<CategoryDetails />} />
       <Route path="/services" element={<Services />} />

@@ -13,26 +13,24 @@ function CategoryCard({ category, headline, services, videoLinks }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center text-white pt-3">
+    <div className="min-h-screen flex flex-col items-center text-white md:-mt-12">
       {/* Headline */}
       <div className="border-2 border-gray-400 rounded-lg px-6 py-3 mb-8 text-center bg-black bg-opacity-50">
         <h1 className="text-3xl font-bold text-red-500">{headline}</h1>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-start gap-10 md:gap-28 w-full max-w-6xl">
-        {/* Phones Section */}
-        <div className="w-full md:w-auto relative">
-          {/* Mobile View: One phone, swipeable */}
-          <div className="block md:hidden relative w-full h-[470px] overflow-hidden">
-            <AnimatePresence initial={false} custom={currentIndex}>
+      {/* Mobile View */}
+      <div className="block md:hidden w-full">
+        {/* Phones Section - One at a time with scroll */}
+        <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hidden">
+          <div className="flex gap-6 w-max py-4 px-4">
+            {videoLinks.map((videoLink, index) => (
               <motion.div
-                key={currentIndex}
-                custom={currentIndex}
-                initial={{ x: 300, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -300, opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute left-1/2 transform -translate-x-1/2"
+                key={index}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="snap-center flex-shrink-0"
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={(e, info) => {
@@ -40,28 +38,47 @@ function CategoryCard({ category, headline, services, videoLinks }) {
                   else if (info.offset.x > 100) handleSwipe("right");
                 }}
               >
-                <PhoneFrame videoLink={videoLinks[currentIndex]} />
+                <PhoneFrame videoLink={videoLink} />
               </motion.div>
-            </AnimatePresence>
-
-            {/* Slide Sign */}
-            {currentIndex < videoLinks.length - 1 && (
-              <div className="absolute bottom-2 right-4 text-sm text-gray-400 animate-pulse">
-                Slide →
-              </div>
-            )}
+            ))}
           </div>
+          {/* Scroll Sign */}
+          {currentIndex < videoLinks.length - 1 && (
+            <div className="absolute bottom-4 right-4 text-sm text-gray-400 animate-pulse">
+              Swipe →
+            </div>
+          )}
+        </div>
 
-          {/* Desktop View: All phones side by side */}
-          <div className="hidden md:flex gap-10">
+        {/* Services - Below Phone */}
+        <div className="w-full text-left space-y-6 mt-8 px-4">
+          <h2 className="text-3xl font-bold text-red-500 border-b border-red-600 pb-2">
+            Services Included
+          </h2>
+          <ul className="text-lg space-y-3">
+            {services.map((service, index) => (
+              <li key={index} className="flex items-start">
+                <span className="text-red-500 mr-2">•</span>
+                <span className="text-gray-200">{service}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Desktop View - Original Layout */}
+      <div className="hidden md:flex flex-col md:flex-row justify-between items-start gap-10 md:gap-28 w-full max-w-6xl">
+        {/* Phones Section - All side by side */}
+        <div className="w-full md:w-auto">
+          <div className="flex gap-10">
             {videoLinks.map((videoLink, index) => (
               <PhoneFrame key={index} videoLink={videoLink} />
             ))}
           </div>
         </div>
 
-        {/* Services */}
-        <div className="flex-1 text-left space-y-6 mt-10 md:mt-0">
+        {/* Services - Right Side */}
+        <div className="flex-1 text-left space-y-6 mt-8 md:mt-0">
           <h2 className="text-3xl font-bold text-red-500 border-b border-red-600 pb-2">
             Services Included
           </h2>

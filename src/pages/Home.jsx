@@ -20,36 +20,40 @@ function Home() {
       ></div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center py-96 h-screen text-white">
+      <div className="relative z-10 flex flex-col items-center pt-96 pb-24 h-screen text-white">
+        {/* Text */}
         <motion.h1
-          className="text-6xl md:text-8xl font-extrabold text-red-600 mb-6"
+          className="text-4xl md:text-6xl font-bold text-white mb-8"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          
+          Hi, I am Kartik
         </motion.h1>
 
-        <motion.p
-          className="text-xl md:text-2xl mb-6 text-gray-300 "
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
-          View My Work
-        </motion.p>
-
-        {/* Play Button */}
-        <motion.button
-          onClick={() => navigate("/categories")}
-          className="bg-red-700 hover:bg-red-900 text-white px-10 py-3 rounded-full text-lg font-semibold shadow-lg 
-                     transition-transform transform hover:scale-105 flex items-center gap-2"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1, duration: 0.5 }}
-        >
-          ▶ Play
-        </motion.button>
+        {/* Buttons */}
+        <div className="flex space-x-4">
+          <motion.button
+            onClick={() => navigate("/about")}
+            className="bg-red-700 hover:bg-red-900 text-white px-10 py-3 rounded-full text-lg font-semibold shadow-lg 
+                       transition-transform transform hover:scale-105 flex items-center gap-2"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            About Me
+          </motion.button>
+          <motion.button
+            onClick={() => navigate("/categories")}
+            className="bg-red-700 hover:bg-red-900 text-white px-10 py-3 rounded-full text-lg font-semibold shadow-lg 
+                       transition-transform transform hover:scale-105 flex items-center gap-2"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            My Works
+          </motion.button>
+        </div>
       </div>
     </div>
   );
