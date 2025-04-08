@@ -15,7 +15,7 @@ function CategoryCard({ category, headline, services, videoLinks }) {
   return (
     <div className="min-h-screen flex flex-col items-center text-white md:-mt-12">
       {/* Headline */}
-      <div className="border-2 border-gray-400 rounded-lg px-6 py-3 mb-8 text-center bg-black bg-opacity-50">
+      <div className="border-2 border-gray-400 rounded-lg px-6 py-3 -mt-10 md:mt-0 mb-8 text-center bg-black bg-opacity-50">
         <h1 className="text-3xl font-bold text-red-500">{headline}</h1>
       </div>
 
