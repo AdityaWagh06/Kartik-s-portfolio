@@ -1,64 +1,73 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useState, useRef } from "react";
 
 function CategoryCard({ category, headline, services, videoLinks }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const phoneScrollRef = useRef(null);
 
-  const handleSwipe = (direction) => {
-    if (direction === "left" && currentIndex < videoLinks.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else if (direction === "right" && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+  const handlePhoneScroll = () => {
+    if (!phoneScrollRef.current) return;
+    const scrollLeft = phoneScrollRef.current.scrollLeft;
+    const itemWidth = 220 + 24; // phone width + gap
+    const index = Math.round(scrollLeft / itemWidth);
+    setCurrentIndex(index);
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center text-white md:-mt-12">
-      {/* Headline */}
-      <div className="border-2 border-gray-400 rounded-lg px-4 py-2 -mt-10 md:mt-0 mb-6 md:mb-8 text-center bg-black bg-opacity-50">
-        <h1 className="text-2xl md:text-3xl font-bold text-red-500">{headline}</h1>
+    <div className="flex flex-col items-center text-white px-4">
+      {/* ✅ Shared Headline (Mobile + PC) */}
+      <div className="w-full text-center mb-4 md:mb-6">
+        <div className="inline-block border-2 border-gray-400 rounded-lg px-6 py-3 bg-black bg-opacity-50">
+          <h1 className="text-2xl md:text-3xl font-bold text-red-500">{headline}</h1>
+        </div>
       </div>
 
-      {/* Mobile View with scroll fix */}
-      <div className="block md:hidden w-full h-[calc(100vh-5rem)] overflow-y-auto pb-8">
-        {/* Phones Section */}
-        <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hidden">
-          <div className="flex gap-4 md:gap-6 w-max py-2 md:py-4 px-2 md:px-4">
+      {/* ✅ Mobile View */}
+      <div className="block md:hidden w-full overflow-y-auto max-h-[calc(100vh-4rem)] pt-2 pb-20">
+        {/* Phone Carousel */}
+        <div
+          className="overflow-x-auto snap-x snap-mandatory scrollbar-hidden -mx-4 px-4"
+          onScroll={handlePhoneScroll}
+          ref={phoneScrollRef}
+        >
+          <div className="flex gap-6 w-max py-4 pr-10">
             {videoLinks.map((videoLink, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.5 }}
                 className="snap-center flex-shrink-0"
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                onDragEnd={(e, info) => {
-                  if (info.offset.x < -100) handleSwipe("left");
-                  else if (info.offset.x > 100) handleSwipe("right");
-                }}
               >
-                <PhoneFrame videoLink={videoLink} isMobile={true} />
+                <PhoneFrame videoLink={videoLink} isMobile />
               </motion.div>
             ))}
+            {/* Extra spacer for better scroll to last dot */}
+            <div className="w-[60px]"></div>
           </div>
-          {/* Scroll Hint */}
-          {currentIndex < videoLinks.length - 1 && (
-            <div className="absolute bottom-2 md:bottom-4 right-2 md:right-4 text-xs md:text-sm text-gray-400 animate-pulse">
-              Swipe →
-            </div>
-          )}
         </div>
 
-        {/* Services */}
-        <div className="w-full text-left space-y-4 md:space-y-6 mt-6 md:mt-8 px-2 md:px-4">
-          <h2 className="text-2xl md:text-3xl font-bold text-red-500 border-b border-red-600 pb-1 md:pb-2">
+        {/* Dot Indicators */}
+        <div className="flex justify-center mt-2 space-x-2">
+          {videoLinks.map((_, index) => (
+            <div
+              key={index}
+              className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                currentIndex === index ? "bg-red-500 scale-110" : "bg-gray-500"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Services Section */}
+        <div className="text-left mt-6 space-y-4">
+          <h2 className="text-2xl font-bold text-red-500 border-b border-red-600 pb-1">
             Services Included
           </h2>
-          <ul className="text-base md:text-lg space-y-2 md:space-y-3">
+          <ul className="text-base space-y-2">
             {services.map((service, index) => (
               <li key={index} className="flex items-start">
-                <span className="text-red-500 mr-1 md:mr-2">•</span>
+                <span className="text-red-500 mr-2">•</span>
                 <span className="text-gray-200">{service}</span>
               </li>
             ))}
@@ -66,8 +75,9 @@ function CategoryCard({ category, headline, services, videoLinks }) {
         </div>
       </div>
 
-      {/* Desktop View */}
-      <div className="hidden md:flex flex-col md:flex-row justify-between items-start gap-10 md:gap-28 w-full max-w-6xl">
+      {/* ✅ Desktop View (unchanged) */}
+      <div className="hidden md:flex flex-col md:flex-row justify-between items-start gap-10 md:gap-28 w-full max-w-6xl mt-10">
+        {/* Phones */}
         <div className="w-full md:w-auto">
           <div className="flex gap-10">
             {videoLinks.map((videoLink, index) => (
@@ -76,6 +86,7 @@ function CategoryCard({ category, headline, services, videoLinks }) {
           </div>
         </div>
 
+        {/* Services */}
         <div className="flex-1 text-left space-y-6 mt-8 md:mt-0">
           <h2 className="text-3xl font-bold text-red-500 border-b border-red-600 pb-2">
             Services Included
@@ -97,7 +108,9 @@ function CategoryCard({ category, headline, services, videoLinks }) {
 function PhoneFrame({ videoLink, isMobile }) {
   return (
     <motion.div
-      className={`relative ${isMobile ? "w-[180px] h-[360px]" : "w-[220px] h-[450px]"} rounded-[35px] shadow-xl flex-shrink-0`}
+      className={`relative ${
+        isMobile ? "w-[180px] h-[360px]" : "w-[220px] h-[450px]"
+      } rounded-[35px] shadow-xl flex-shrink-0`}
       style={{
         background: "linear-gradient(145deg, #2b2b2b, #1a1a1a)",
         boxShadow: `
@@ -107,14 +120,9 @@ function PhoneFrame({ videoLink, isMobile }) {
         `,
       }}
     >
-      {/* Buttons */}
-      <div className={`absolute right-[-2px] top-[${isMobile ? "80px" : "100px"}] w-[3px] h-[${isMobile ? "48px" : "60px"}] bg-[#2b2b2b] rounded-l-md`}></div>
-      <div className={`absolute left-[-2px] top-[${isMobile ? "68px" : "85px"}] w-[3px] h-[${isMobile ? "20px" : "25px"}] bg-[#2b2b2b] rounded-r-md`}></div>
-      <div className={`absolute left-[-2px] top-[${isMobile ? "96px" : "120px"}] w-[3px] h-[${isMobile ? "20px" : "25px"}] bg-[#2b2b2b] rounded-r-md`}></div>
-
       {/* Dynamic Island */}
-      <div className={`absolute top-2 md:top-3 left-1/2 transform -translate-x-1/2 w-[${isMobile ? "76px" : "95px"}] h-[${isMobile ? "20px" : "25px"}] bg-black rounded-[14px] z-20`}>
-        <div className={`absolute right-[${isMobile ? "16px" : "20px"}] top-1/2 transform -translate-y-1/2 w-[${isMobile ? "6px" : "8px"}] h-[${isMobile ? "6px" : "8px"}] rounded-full bg-[#1a1a1a] border-[2px] border-[#2b2b2b]`}></div>
+      <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-[76px] h-[20px] bg-black rounded-[14px] z-20">
+        <div className="absolute right-[16px] top-1/2 transform -translate-y-1/2 w-[6px] h-[6px] rounded-full bg-[#1a1a1a] border-[2px] border-[#2b2b2b]"></div>
       </div>
 
       {/* Screen */}
@@ -139,10 +147,6 @@ function PhoneFrame({ videoLink, isMobile }) {
           </div>
         </div>
       </div>
-
-      {/* Bottom Ports */}
-      <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-[${isMobile ? "36px" : "45px"}] h-[3px] bg-[#2b2b2b] rounded-full`}></div>
-      <div className={`absolute bottom-[2px] left-1/2 transform -translate-x-1/2 w-[${isMobile ? "8px" : "10px"}] h-[4px] bg-[#2b2b2b] rounded-[2px]`}></div>
     </motion.div>
   );
 }

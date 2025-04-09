@@ -30,13 +30,13 @@ function CategoryDetails() {
       services: [
         "Advanced Cutting + Smooth Transitions",
         "Color Correction & Light Grading",
-        "Basic Motion Graphics (Subtitles, Text Popups)",
+        "Basic Motion Graphics ",
         "B-Roll Placement",
         "Sound Effects & Audio Balancing",
         "Up to 2 Revisions",
         "Duration: 60s – 5 minutes",
         "Delivery: 2–4 Days",
-        "Ideal For: YouTube Shorts, Product Reels, Promotional Videos",
+        "Ideal For: YouTube Shorts, Product Reels",
       ],
       videoLinks: [
         "https://www.youtube.com/embed/81Oa3IRvPaw",
@@ -72,29 +72,40 @@ function CategoryDetails() {
         "Artistic editing templates",
       ],
       videoLinks: [
-        "https://www.youtube.com/embed/XdTWrckH9J4",
-        "https://www.youtube.com/embed/7TyZTJ3KQBQ",
+        "https://www.youtube.com/embed/XdTWrckH9J4", // best
         "https://www.youtube.com/embed/eiaSyw4Y6aA",
+        "https://www.youtube.com/embed/7TyZTJ3KQBQ", // best
       ],
     },
   };
 
-  const currentContent = pageContent[category] || pageContent["Standard"];
+  const formatCategory = (str) => {
+    if (!str) return "Standard";
+    const lower = str.toLowerCase();
+    if (lower.includes("long")) return "Long";
+    if (lower.includes("premium")) return "Premium";
+    if (lower.includes("elite")) return "Elite";
+    return "Standard";
+  };
+
+  const currentContent =
+    pageContent[formatCategory(category)] || pageContent["Standard"];
 
   return (
     <div className="relative min-h-screen bg-black">
+      {/* Navbar (fixed as is) */}
       <Navbar />
 
-      {/* Background Image */}
+      {/* Background */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25 z-0"
         style={{
-          backgroundImage: "url('assets/money.webp')",
+          backgroundImage: "url('/assets/money.webp')",
         }}
       ></div>
 
-      {/* Main Content */}
-      <div className="relative z-10 pt-20 pb-12 min-h-screen text-white">
+      {/* Scrollable section starts below navbar (works on mobile) */}
+      <div className="relative z-10 h-[calc(100vh-4rem)] overflow-y-auto pt-4 pb-32 text-white">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -104,7 +115,7 @@ function CategoryDetails() {
             headline={currentContent.headline}
             services={currentContent.services}
             videoLinks={currentContent.videoLinks}
-            category={category}
+            category={formatCategory(category)}
           />
         </motion.div>
       </div>

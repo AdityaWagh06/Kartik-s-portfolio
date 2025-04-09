@@ -44,13 +44,13 @@ function Contact() {
           transition={{ delay: 0.6, duration: 0.8 }}
         >
           <a
-            href="mailto:kartik@example.com"
+            href="mailto:ktshinde18@gmail.com"
             className="bg-red-600 px-6 py-3 rounded-full font-medium hover:bg-red-700 transition"
           >
             📧 Email Me
           </a>
           <a
-            href="https://www.instagram.com/kartik"
+            href="https://www.instagram.com/ktrs_49?igsh=MXhlM2h5MHNlbDE0cA=="
             target="_blank"
             rel="noopener noreferrer"
             className="bg-red-600 px-6 py-3 rounded-full font-medium hover:bg-red-700 transition"
